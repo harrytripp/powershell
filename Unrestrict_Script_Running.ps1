@@ -1,0 +1,2 @@
+﻿#Semicolons allow commands to be ran on one line however they will continue to run sequentially even if the one before fails.
+Get-ExecutionPolicy; set-executionpolicy unrestricted; <#Code to run unrestricted here#> Get-ExecutionPolicy; set-executionpolicy restricted; Get-ExecutionPolicy
