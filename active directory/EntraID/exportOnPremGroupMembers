@@ -4,17 +4,19 @@ Get-Module AzureAD
 
 Connect-AzureAD
 
-# Get-ADGroup -Identity "SG All Staff OLD" | Select-Object * # Name, SamAccountName, ObjectGUID, SID
-$AzSID = Get-AzureADGroup -SearchString "SG All Staff" | Select-Object onPremisesSecurityIdentifier
+$AzInfo = Get-AzureADGroup -SearchString "All Staff" | Select-Object *
+$AzSID = Get-AzureADGroup -SearchString "All Staff" | Select-Object onPremisesSecurityIdentifier
 
-$string = "$($AzSID[0])"
-$trim = $string.Trim("@","{","}"," ")
+$AzSidStr = "$($AzSID[0])"
+$trim = $AzSidStr.Trim("@","{","}"," ")
 $SID = $trim.substring($trim.IndexOf("=") + 1)
 Write-Host "Azure Object SID is: $($SID)"
 
-Write-Host "On Prem AD Object is:"
-Get-ADGroup -Identity "$($SID)" | Select-Object *
+$adInfo = Get-ADGroup -Identity "$($SID)" | Select-Object *
+Write-Host "On Prem AD Object is: $($adInfo.Name)"
 
 $data = Get-ADGroupMember -Identity "$($SID)" -Recursive | Get-ADUser | Select-Object *
 
-$data | Export-Csv -Path "C:\VSCode\PowerShell\data.csv" -NoTypeInformation -Force
+$AzInfo | Export-Csv -Path "C:\Export\AzureInfo.csv" -NoTypeInformation -Force
+$adInfo | Export-Csv -Path "C:\Export\ADInfo.csv" -NoTypeInformation -Append -Force
+$data | Export-Csv -Path "C:\Export\Membership.csv" -NoTypeInformation -Append -Force
