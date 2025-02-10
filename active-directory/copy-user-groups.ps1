@@ -7,9 +7,15 @@ $groups = Get-ADPrincipalGroupMembership $reference | Select-Object SamAccountNa
 $ExistingGroups = Get-ADPrincipalGroupMembership $copy | Select-Object SamAccountName
 $MissingGroups = $ExistingGroups| ?{$groups -notcontains $_}
 
-Write-Host "You are about to add user"$copy" to these groups:"
+Write-Host 'You are about to add user"$copy" to these groups:'
 Write-Host $MissingGroups
+$check = Read-Host 'Would you like to continue? y/N'
 
-foreach ($group in $MissingGroups){
-    Add-ADPrincipalGroupMembership -Identity $copy -MemberOf $group -WhatIf
+if ($check -eq 'y') {
+    foreach ($group in $MissingGroups){
+        Add-ADPrincipalGroupMembership -Identity $copy -MemberOf $group -WhatIf
+    }
+}else{
+    Write-Host 'Operation Cancelled'
+    exit
 }
