@@ -1,0 +1,1 @@
+Get-ADUser -Filter * -SearchBase "OU=grandchild,OU=child,OU=parent,DC=network,DC=local" -Properties Name, emailAddress | Select-Object Name, emailAddress | Export-Csv -Path .\emails.csv -NoTypeInformation

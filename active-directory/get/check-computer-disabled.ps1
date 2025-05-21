@@ -1,0 +1,1 @@
+if (-not (Get-ADComputer -Filter 'Name -like "computer-01"').Enabled) {Write-Host "Disabled"}

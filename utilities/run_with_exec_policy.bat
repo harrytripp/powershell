@@ -1,0 +1,1 @@
+pwsh.exe Set-ExecutionPolicy Bypass -Scope Process | \\path\to\script.ps1

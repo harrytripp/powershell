@@ -1,0 +1,1 @@
+Write-Host (Get-ADUser -Properties * -filter {SID -eq 'S-1-5-21-748552509-2536085415-3075278054-16558'})
