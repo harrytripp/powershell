@@ -1,0 +1,1 @@
+Get-Content logfile.log -tail 10 -wait
