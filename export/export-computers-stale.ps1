@@ -1,3 +1,6 @@
+# Targets: Only explicitly included OUs. Computers not logged into in over 6 months.
+# Exludes: whitelisted computers.
+
 $whitelist = @("computer01$","server01$","laptop01$")
 
 Get-ADComputer -filter * -SearchBase "OU=grandchild,OU=child,OU=parent,DC=network,DC=local" -properties * |
