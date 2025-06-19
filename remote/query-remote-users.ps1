@@ -1,0 +1,1 @@
+Invoke-Command -ScriptBlock { quser } -ComputerName ('Name -like "computer-01"').Name -Credential network.local\user
