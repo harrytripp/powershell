@@ -1,4 +1,4 @@
-$destination = '172.23.1.12'
+$destination = '8.8.8.8'
 $logPath = '.\tracert.log'
 
 Write-Host "Connection monitoring has begun. Target: $destination"
